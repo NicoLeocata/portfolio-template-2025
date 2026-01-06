@@ -1,0 +1,34 @@
+/* ========== Layout ========== */
+
+.container {
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  backdrop-filter: blur(12px);
+  background: rgba(11, 15, 26, 0.55);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Sections spacing rhythm */
+section {
+  padding-top: clamp(3rem, 5vw, 5rem);
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+/* Hero headline sizing */
+#home h1 {
+  font-size: var(--fs-xl);
+  letter-spacing: -0.02em;
+}
+
+/* Subtle separators */
+.border-top,
+.border-bottom {
+  border-color: var(--border) !important;
+}
