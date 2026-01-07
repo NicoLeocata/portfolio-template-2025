@@ -1,6 +1,6 @@
 /* ========== Components (Bootstrap overrides) ========== */
 
-/* Navbar brand */
+/* Navbar */
 .navbar-brand {
   letter-spacing: -0.02em;
   color: var(--brand) !important;
@@ -11,10 +11,10 @@
   color: var(--text) !important;
 }
 
-/* Links */
 .nav-link {
   color: var(--muted) !important;
 }
+
 .nav-link:hover,
 .nav-link:focus {
   color: var(--text) !important;
@@ -29,8 +29,9 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--brand), #9d8bff);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--brand);
+  color: var(--bg);
+  border: 1px solid var(--border);
 }
 
 .btn-primary:hover {
@@ -39,67 +40,105 @@
 }
 
 .btn-outline-primary {
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: var(--border);
   color: var(--text);
 }
 
 .btn-outline-primary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.28);
+  background: var(--surface);
 }
 
 /* Cards */
 .card {
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  background: var(--surface);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
   box-shadow: var(--shadow);
   overflow: hidden;
 }
 
-.card-body {
-  color: var(--text);
+.bg-body-tertiary {
+  background: linear-gradient(
+    135deg,
+    var(--surface),
+    var(--surface-2)
+  ) !important;
 }
 
+/* Typography helpers */
 .text-body-secondary,
 .opacity-75 {
   color: var(--muted) !important;
 }
 
-/* Placeholder media blocks */
-.bg-body-tertiary {
-  background: linear-gradient(
-    135deg,
-    rgba(124, 92, 255, 0.18),
-    rgba(34, 197, 94, 0.12)
-  ) !important;
+/* Action links (Ver todos / Ver caso / Ver menos) */
+.link-primary,
+.btn-link {
+  color: var(--text) !important;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.25s ease;
 }
 
-/* Nice rounded for hero image box */
-.rounded-4 {
-  border-radius: var(--radius) !important;
+/* Prevent browser visited color */
+.link-primary:visited,
+.btn-link:visited {
+  color: var(--text) !important;
 }
 
-/* “Skip to content” link nice */
-.visually-hidden-focusable:focus {
-  position: absolute !important;
-  top: 1rem;
-  left: 1rem;
-  z-index: 9999;
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  background: rgba(11, 15, 26, 0.9);
-  color: var(--text);
-  border: 1px solid var(--border);
+/* Underline animation */
+.link-primary::after,
+.btn-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.25s ease;
 }
 
-/* Micro-interactions */
-.card,
-.btn {
-  transition: transform 220ms ease, filter 220ms ease,
-    background-color 220ms ease;
+/* Hover + focus */
+.link-primary:hover,
+.link-primary:focus-visible,
+.btn-link:hover,
+.btn-link:focus-visible {
+  color: var(--accent) !important;
 }
 
-.card:hover {
-  transform: translateY(-4px);
+.link-primary:hover::after,
+.link-primary:focus-visible::after,
+.btn-link:hover::after,
+.btn-link:focus-visible::after {
+  width: 100%;
+}
+
+/* Project cards hover */
+.project-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.project-card:focus-within {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.project-card .ratio {
+  overflow: hidden;
+}
+
+.project-card .ratio::before {
+  transition: transform 0.45s ease;
+}
+
+.project-card:hover .ratio::before {
+  transform: scale(1.04);
 }
